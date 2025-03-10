@@ -86,9 +86,6 @@ const Dashboard = () => {
                         <img src="/kreesalis.png" alt="Company Logo" style={{ height: "40px" }} />
                     </Box>
                     <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                        <Typography variant="body1" sx={{ color: "#FFF", fontWeight: "bold" }}>
-                            {username}
-                        </Typography>
                         <IconButton sx={{ color: "#FFF" }}>
                             <AccountCircleIcon />
                         </IconButton>

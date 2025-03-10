@@ -63,7 +63,7 @@ const Login: React.FC = () => {
             }}
           >
             {/* Left Section - Branding & Slideshow */}
-            <Box sx={{ padding: 4, textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <Box sx={{ padding: 1, textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
               <Typography
                 variant="h3"
                 fontWeight="bold"
@@ -73,20 +73,17 @@ const Login: React.FC = () => {
                   WebkitTextFillColor: "transparent",
                 }}
               >
-                FileSage
+                K-Insights
               </Typography>
               <Typography variant="body1" color="textSecondary" sx={{ marginTop: 1, maxWidth: 400 }}>
-                AI-powered chatbot that intelligently answers your queries based on uploaded files.
-              </Typography>
-              <Typography variant="body1" color="textSecondary" sx={{ marginTop: 1, maxWidth: 400 }}>
-                Upload PDFs, CSVs, or text files and get instant responses with FileSage's advanced document analysis.
-              </Typography>
-              <Typography variant="body1" color="primary" fontWeight="bold" sx={{ marginTop: 2 }}>
-                Secure | Fast | AI-Powered
+                K-Insights is a cutting-edge AI-powered platform designed to enhance business operations with intelligent agents tailored to various needs. From efficient file management to real-time market insights, K-Insights offers a suite of agents that empower businesses with actionable data and streamlined workflows
               </Typography>
               <Box sx={{ marginTop: 3, width: "100%", maxWidth: 380 }}>
                 <ImageSlideshow />
               </Box>
+              <Typography variant="body1" color="primary" fontWeight="bold" sx={{ marginTop: 2 }}>
+                Secure | Fast | AI-Powered
+              </Typography>
             </Box>
 
             {/* Right Section - Login Form */}
