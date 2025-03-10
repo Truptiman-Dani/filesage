@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
+  ListItemButton,
+  Card,
+  CardContent
+} from "@mui/material";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import DescriptionIcon from "@mui/icons-material/Description";
+import {
   Box,
   Typography,
   AppBar,
@@ -75,6 +82,11 @@ const Chat = () => {
     }
   };
 
+  const handleCollaborate = () => {
+    alert("Collaboration feature coming soon! 🚀");
+  };
+
+
   return (
     <Box
       sx={{
@@ -129,6 +141,7 @@ const Chat = () => {
       <Box sx={{ flexGrow: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 3 }}>
         <Box
           sx={{
+            position: "relative", // Required for absolute positioning inside
             width: "100%",
             maxWidth: "900px",
             height: "70vh",
@@ -140,6 +153,26 @@ const Chat = () => {
             boxShadow: "0px 2px 10px rgba(255,255,255,0.2)",
           }}
         >
+          {/* Collaborate Button (Positioned in the Top-Right Corner) */}
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<AccountCircleIcon />}
+            onClick={handleCollaborate}
+            sx={{
+              position: "absolute",
+              top: 16,  // Adjust this to fine-tune the position
+              right: 16, // Adjust for spacing from the corner
+              backgroundColor: "#1976d2",
+              textTransform: "none",
+              borderRadius: "10px",
+              boxShadow: "0px 4px 10px rgba(0,0,0,0.2)",
+            }}
+          >
+            Collaborate
+          </Button>
+
+          {/* Chat Component */}
           <ChatComponent messages={messages} />
         </Box>
       </Box>
@@ -198,38 +231,83 @@ const Chat = () => {
         </Box>
       </Box>
 
-      {/* Left Sidebar: Chat History */}
+      {/* Chat History Sidebar */}
       <Drawer
         variant="persistent"
         anchor="left"
         open={historyOpen}
-        sx={{ "& .MuiDrawer-paper": { width: 250, backgroundColor: "#1E1E2E", color: "#FFF" } }}
+        sx={{
+          "& .MuiDrawer-paper": {
+            width: 280,
+            backgroundColor: "#1E1E2E",
+            color: "#FFF",
+            padding: 2,
+          },
+        }}
       >
+        <Typography variant="h6" sx={{ textAlign: "center", fontWeight: "bold", mb: 2 }}>
+          Chat History
+        </Typography>
         <List>
           {chatHistory.map((chat, index) => (
-            <ListItem component="button" key={index} onClick={() => setSelectedChat(chat)}>
+            <ListItemButton
+              key={index}
+              selected={selectedChat === chat}
+              onClick={() => setSelectedChat(chat)}
+              sx={{
+                "&.Mui-selected": { backgroundColor: "#44475a", color: "#fff", borderRadius: "8px" },
+                "&:hover": { backgroundColor: "#3a3f54" },
+                paddingY: 1.5,
+              }}
+            >
+              <ChatBubbleOutlineIcon sx={{ marginRight: 1 }} />
               <ListItemText primary={chat} />
-            </ListItem>
+            </ListItemButton>
           ))}
         </List>
       </Drawer>
 
-      {/* Right Sidebar: Uploaded Files */}
+      {/* Uploaded Files Sidebar */}
       <Drawer
         variant="persistent"
         anchor="right"
         open={filesOpen}
-        sx={{ "& .MuiDrawer-paper": { width: 250, backgroundColor: "#1E1E2E", color: "#FFF" } }}
+        sx={{
+          "& .MuiDrawer-paper": {
+            width: 280,
+            backgroundColor: "#1E1E2E",
+            color: "#FFF",
+            padding: 2,
+          },
+        }}
       >
+        <Typography variant="h6" sx={{ textAlign: "center", fontWeight: "bold", mb: 2 }}>
+          Uploaded Files
+        </Typography>
         <List>
           {uploadedFiles.map((file, index) => (
-            <ListItem key={index}>
-              <FolderIcon sx={{ marginRight: 1 }} />
-              <ListItemText primary={file.name} />
-            </ListItem>
+            <Card
+              key={index}
+              sx={{
+                backgroundColor: "#44475a",
+                color: "#fff",
+                marginBottom: 1,
+                padding: 1,
+                borderRadius: "10px",
+                display: "flex",
+                alignItems: "center",
+                boxShadow: "0px 4px 10px rgba(255,255,255,0.1)",
+              }}
+            >
+              <DescriptionIcon sx={{ marginRight: 1, color: "#bbb" }} />
+              <Typography variant="body2" noWrap sx={{ flexGrow: 1 }}>
+                {file.name}
+              </Typography>
+            </Card>
           ))}
         </List>
       </Drawer>
+
     </Box>
   );
 };
